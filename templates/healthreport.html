@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Report - Wellness Voyage</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: url('https://img.freepik.com/free-photo/3d-render-medical-background-with-flu-virus-cells_1048-15099.jpg?w=1800&t=st=1719227248~exp=1719227848~hmac=4f8af76cb3d2b1de5a936a63ce628f3daca58e9d9c7cc69283a587a7b1806710') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+        }
+        .hidden {
+            display: none;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .card {
+            background-color: rgba(0, 0, 0, 0.8);
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            color: white;
+            padding: 30px;
+            margin: 30px;
+            max-width: 600px;
+        }
+        h1 {
+            color: #ffcc00;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .btn-primary {
+            background-color: #ffcc00;
+            border: none;
+            color: black;
+        }
+        .btn-primary:hover {
+            background-color: #e6b800;
+        }
+        .form-control {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid #ffcc00;
+        }
+        .report-section {
+            background-color: rgba(0, 0, 0, 0.8);
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            color: white;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        .section-title {
+            color: #ffcc00;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        ul li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <center>
+    <div class="container">
+        <div class="card">
+            <h1>Health Report</h1>
+
+            <div class="report-section">
+                <h2 class="section-title">Predicted Disease</h2>
+                <p>{{ predicted_disease }}</p>
+            </div>
+
+            <div class="report-section">
+                <h2 class="section-title">Description</h2>
+                <p>{{ dis_des }}</p>
+            </div>
+
+            <div class="report-section">
+                <h2 class="section-title">Precautions</h2>
+                <ul>
+                    {% for precaution in my_precautions %}
+                        <li>{{ precaution }}</li>
+                    {% endfor %}
+                   
+                </ul>
+            </div>
+
+            <div class="report-section">
+                <h2 class="section-title">Medications</h2>
+                <ul>
+                    {% for medication in medications %}
+                        <li>{{ medication }}</li>
+                    {% endfor %}
+           
+                </ul>
+                <p>
+                    Need to order your medications online? Visit <a href="https://pharmeasy.in/online-medicine-order?src=homecard" target="_blank">PharmEasy</a>.
+                </p>
+                <button class="btn btn-primary" onclick="toggleAyurvedicMedications()">Allergic to English medicine?</button>
+            </div>
+
+            <div class="report-section hidden" id="ayurvedic-medications">
+                <h2 class="section-title">Ayurvedic Medications</h2>
+                <ul>
+                    {% for ayur in ayur_med %}
+                        <li>{{ ayur }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+
+            <div class="report-section">
+                <h2 class="section-title">Workouts</h2>
+                <ul>
+                    {% for workout_item in workout %}
+                        <li>{{ workout_item }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+          
+            <div class="report-section">
+                <h2 class="section-title">Diets</h2>
+                <ul>
+                    {% for diet_item in my_diet %}
+                        <li>{{ diet_item }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</center>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    
+    <script>
+        function toggleAyurvedicMedications() {
+            const ayurvedicSection = document.getElementById('ayurvedic-medications');
+            if (ayurvedicSection.classList.contains('hidden')) {
+                ayurvedicSection.classList.remove('hidden');
+            } else {
+                ayurvedicSection.classList.add('hidden');
+            }
+        }
+    </script>
+</body>
+</html>

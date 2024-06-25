@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Care Center - Predict Your Disease Based on Symptoms</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <style>
+        body {
+            height: 100%;
+            margin: 0;
+            color: white;
+            font-family: Arial, sans-serif;
+            background: url('https://img.freepik.com/free-photo/3d-render-medical-background-with-flu-virus-cells_1048-15099.jpg?w=1800&t=st=1719227248~exp=1719227848~hmac=4f8af76cb3d2b1de5a936a63ce628f3daca58e9d9c7cc69283a587a7b1806710') no-repeat center center fixed;
+        }
+        .card{
+            background-color: rgba(0, 0, 0, 0.8);
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            color: white;
+            padding: 30px;
+            margin: 30px;
+            max-width: 600px;
+        }
+        .container {
+            margin-top: 50px;
+            margin-bottom: 50px;
+        }
+        .form-group label {
+            font-weight: bold;
+        }
+        .btn-primary {
+            background-color: #F39334;
+            border: none;
+        }
+        .btn-primary:hover {
+            background-color: #e88200;
+        }
+        .form-control {
+            background-color: #383838;
+            color: white;
+            border: 1px solid #F39334;
+        }
+        .btn-danger {
+            background-color: #F8576F;
+            border: none;
+        }
+        .btn-danger:hover {
+            background-color: #e63e57;
+        }
+        .modal-header {
+            background-color: #020606;
+            color: white;
+        }
+        .toggle-button {
+            padding: 10px;
+            margin: 5px;
+            font-size: 18px;
+            font-weight: bold;
+            width: 180px;
+            border-radius: 5px;
+        }
+        .result-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="text-center mt-4 mb-4">Predict Your Disease From Symptoms</h1>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card text-white p-4 rounded">
+                    <form action="/predict" method="post">
+                        <div class="form-group">
+                            <label for="symptoms" class="symptom-label">Select Symptoms:</label>
+                           <br><br>
+                            <datalist id="symptomList">
+                                <option value="itching">
+                                    <option value="skin_rash">
+                                    <option value="nodal_skin_eruptions">
+                                    <option value="continuous_sneezing">
+                                    <option value="shivering">
+                                    <option value="chills">
+                                    <option value="joint_pain">
+                                    <option value="stomach_pain">
+                                    <option value="acidity">
+                                    <option value="ulcers_on_tongue">
+                                    <option value="muscle_wasting">
+                                    <option value="vomiting">
+                                    <option value="burning_micturition">
+                                    <option value="spotting_ urination">
+                                    <option value="fatigue">
+                                    <option value="weight_gain">
+                                    <option value="anxiety">
+                                    <option value="cold_hands_and_feets">
+                                    <option value="mood_swings">
+                                    <option value="weight_loss">
+                                    <option value="restlessness">
+                                    <option value="lethargy">
+                                    <option value="patches_in_throat">
+                                    <option value="irregular_sugar_level">
+                                    <option value="cough">
+                                    <option value="high_fever">
+                                    <option value="sunken_eyes">
+                                    <option value="breathlessness">
+                                    <option value="sweating">
+                                    <option value="dehydration">
+                                    <option value="indigestion">
+                                    <option value="headache">
+                                    <option value="yellowish_skin">
+                                    <option value="dark_urine">
+                                    <option value="nausea">
+                                    <option value="loss_of_appetite">
+                                    <option value="pain_behind_the_eyes">
+                                    <option value="back_pain">
+                                    <option value="constipation">
+                                    <option value="abdominal_pain">
+                                    <option value="diarrhoea">
+                                    <option value="mild_fever">
+                                    <option value="yellow_urine">
+                                    <option value="yellowing_of_eyes">
+                                    <option value="acute_liver_failure">
+                                    <option value="fluid_overload">
+                                    <option value="swelling_of_stomach">
+                                    <option value="swelled_lymph_nodes">
+                                    <option value="malaise">
+                                    <option value="blurred_and_distorted_vision">
+                                    <option value="phlegm">
+                                    <option value="throat_irritation">
+                                    <option value="redness_of_eyes">
+                                    <option value="sinus_pressure">
+                                    <option value="runny_nose">
+                                    <option value="congestion">
+                                    <option value="chest_pain">
+                                    <option value="weakness_in_limbs">
+                                    <option value="fast_heart_rate">
+                                    <option value="pain_during_bowel_movements">
+                                    <option value="pain_in_anal_region">
+                                    <option value="bloody_stool">
+                                    <option value="irritation_in_anus">
+                                    <option value="neck_pain">
+                                    <option value="dizziness">
+                                    <option value="cramps">
+                                    <option value="bruising">
+                                    <option value="obesity">
+                                    <option value="swollen_legs">
+                                    <option value="swollen_blood_vessels">
+                                    <option value="puffy_face_and_eyes">
+                                    <option value="enlarged_thyroid">
+                                    <option value="brittle_nails">
+                                    <option value="swollen_extremeties">
+                                    <option value="excessive_hunger">
+                                    <option value="extra_marital_contacts">
+                                    <option value="drying_and_tingling_lips">
+                                    <option value="slurred_speech">
+                                    <option value="knee_pain">
+                                    <option value="hip_joint_pain">
+                                    <option value="muscle_weakness">
+                                    <option value="stiff_neck">
+                                    <option value="swelling_joints">
+                                    <option value="movement_stiffness">
+                                    <option value="spinning_movements">
+                                    <option value="loss_of_balance">
+                                    <option value="unsteadiness">
+                                    <option value="weakness_of_one_body_side">
+                                    <option value="loss_of_smell">
+                                    <option value="bladder_discomfort">
+                                    <option value="foul_smell_of urine">
+                                    <option value="continuous_feel_of_urine">
+                                    <option value="passage_of_gases">
+                                    <option value="internal_itching">
+                                    <option value="toxic_look_(typhos)">
+                                    <option value="depression">
+                                    <option value="irritability">
+                                    <option value="muscle_pain">
+                                    <option value="altered_sensorium">
+                                    <option value="red_spots_over_body">
+                                    <option value="belly_pain">
+                                    <option value="abnormal_menstruation">
+                                    <option value="dischromic _patches">
+                                    <option value="watering_from_eyes">
+                                    <option value="increased_appetite">
+                                    <option value="polyuria">
+                                    <option value="family_history">
+                                    <option value="mucoid_sputum">
+                                    <option value="rusty_sputum">
+                                    <option value="lack_of_concentration">
+                                    <option value="visual_disturbances">
+                                    <option value="receiving_blood_transfusion">
+                                    <option value="receiving_unsterile_injections">
+                                    <option value="coma">
+                                    <option value="stomach_bleeding">
+                                    <option value="distention_of_abdomen">
+                                    <option value="history_of_alcohol_consumption">
+                                    <option value="blood_in_sputum">
+                                    <option value="prominent_veins_on_calf">
+                                    <option value="palpitations">
+                                    <option value="painful_walking">
+                                    <option value="pus_filled_pimples">
+                                    <option value="blackheads">
+                                    <option value="scurring">
+                                    <option value="skin_peeling">
+                                    <option value="silver_like_dusting">
+                                    <option value="small_dents_in_nails">
+                                    <option value="inflammatory_nails">
+                                    <option value="blister">
+                                    <option value="red_sore_around_nose">
+                                    <option value="yellow_crust_ooze">
+                         
+                            </datalist>
+                        </div>
+                        <div class="form-group">
+                            <label for="symptom1">Symptom 1:</label>
+                            <input type="text" class="form-control" id="symptom1" name="symptom1" list="symptomList">
+                        </div>
+                        <br><br>
+                        <div class="form-group">
+                            <label for="symptom2">Symptom 2:</label>
+                            <input type="text" class="form-control" id="symptom2" name="symptom2" list="symptomList">
+                        </div>
+                        <br><br>
+                        <div class="form-group">
+                            <label for="symptom3">Symptom 3:</label>
+                            <input type="text" class="form-control" id="symptom3" name="symptom3" list="symptomList">
+                        </div>
+                        <br><br>
+                        <div class="form-group">
+                            <label for="symptom4">Symptom 4:</label>
+                            <input type="text" class="form-control" id="symptom4" name="symptom4" list="symptomList">
+                        </div>
+                        <br><br>
+                        <br><br>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-danger btn-lg btn-block">Predict Disease</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+                <!-- <div class="card bg-dark text-white p-4 rounded">
+                    <form action="/predict" method="post">
+                        <div class="form-group">
+                            <label for="symptoms">Enter Symptoms:</label>
+                            <input type="text" class="form-control" id="symptoms" name="symptoms" placeholder="Type symptoms such as itching, pain, etc." required>
+                        </div>
+                        <div class="form-group">
+                            <button type="button" id="startSpeechRecognition" class="btn btn-primary btn-sm">Start Speech Recognition</button>
+                            <div id="transcription" class="mt-2"></div>
+                        </div>
+                        {% if message %}
+                        <p>{{ message }}</p>
+                        {% endif %}
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-danger btn-lg btn-block">Predict Disease</button>
+                        </div>
+                    </form>
+                </div> -->
+            </div>
+        </div>
+    </div>
+
+ 
+
+  
+
+    <!-- Other modals (similar structure as Disease Modal) -->
+
+    <script>
+        const startSpeechRecognitionButton = document.getElementById('startSpeechRecognition');
+        const transcriptionDiv = document.getElementById('transcription');
+
+        startSpeechRecognitionButton.addEventListener('click', startSpeechRecognition);
+
+        function startSpeechRecognition() {
+            const recognition = new webkitSpeechRecognition(); // Use webkitSpeechRecognition for compatibility
+
+            recognition.lang = 'en-US'; // Set the language for recognition
+
+            recognition.onresult = function (event) {
+                const result = event.results[0][0].transcript;
+                transcriptionDiv.textContent = result;
+            };
+
+            recognition.onend = function () {
+                console.log('Speech recognition ended.');
+            };
+
+            recognition.start();
+
+        }
+
+        
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+</body>
+</html>

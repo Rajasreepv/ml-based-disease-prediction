@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart Disease Prediction</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: url('https://img.freepik.com/free-photo/3d-render-medical-background-with-flu-virus-cells_1048-15099.jpg?w=1800&t=st=1719227248~exp=1719227848~hmac=4f8af76cb3d2b1de5a936a63ce628f3daca58e9d9c7cc69283a587a7b1806710') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+            padding: 50px;
+        }
+        .card {
+            background-color: rgba(0, 0, 0, 0.8);
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            color: white;
+            padding: 30px;
+            margin: 30px;
+            max-width: 900px;
+            width: 100%;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+        h1 {
+            color: #ffcc00;
+        }
+        .btn-primary {
+            background-color: #ffcc00;
+            border: none;
+            color: black;
+        }
+        .btn-primary:hover {
+            background-color: #e6b800;
+        }
+        .form-control {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid #ffcc00;
+        }
+        .form-label {
+            color: white;
+        }
+        .form-control::placeholder {
+            color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h1 class="text-center">Heart Disease Prediction</h1>
+            <form action="{{ url_for('predictheartdisease') }}" method="post">
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="field1" class="form-label">Age</label>
+                        <input type="number" step="0.00000000000001" class="form-control" id="field1" name="field1" placeholder="Enter Age" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="field2" class="form-label">Sex (0 for female, 1 for male)</label>
+                        <input type="number" step="1" class="form-control" id="field2" name="field2" placeholder="Enter 0 or 1" required>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="field3" class="form-label">Chest Pain Type (CP)</label>
+                        <input type="number" step="1" class="form-control" id="field3" name="field3" placeholder="Enter 0, 1, 2, or 3" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="field4" class="form-label">Resting Blood Pressure (trestbps)</label>
+                        <input type="number" step="1" class="form-control" id="field4" name="field4" placeholder="Enter value" required>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="field5" class="form-label">Serum Cholesterol (chol)</label>
+                        <input type="number" step="1" class="form-control" id="field5" name="field5" placeholder="Enter value" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="field6" class="form-label">Fasting Blood Sugar (fbs)</label>
+                        <input type="number" step="1" class="form-control" id="field6" name="field6" placeholder="Enter 0 or 1" required>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="field7" class="form-label">Resting Electrocardiographic Results (restecg)</label>
+                        <input type="number" step="1" class="form-control" id="field7" name="field7" placeholder="Enter 0, 1, or 2" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="field8" class="form-label">Maximum Heart Rate Achieved (thalach)</label>
+                        <input type="number" step="1" class="form-control" id="field8" name="field8" placeholder="Enter value" required>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="field9" class="form-label">Exercise Induced Angina (exang)</label>
+                        <input type="number" step="1" class="form-control" id="field9" name="field9" placeholder="Enter 0 or 1" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="field10" class="form-label">ST Depression Induced by Exercise Relative to Rest (oldpeak)</label>
+                        <input type="number" step="0.1" class="form-control" id="field10" name="field10" placeholder="Enter value" required>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="field11" class="form-label">Slope of the Peak Exercise ST Segment (slope)</label>
+                        <input type="number" step="1" class="form-control" id="field11" name="field11" placeholder="Enter 0, 1, or 2" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="field12" class="form-label">Number of Major Vessels Colored by Fluoroscopy (ca)</label>
+                        <input type="number" step="1" class="form-control" id="field12" name="field12" placeholder="Enter 0, 1, 2, 3, or 4" required>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="field13" class="form-label">Thalassemia (thal)</label>
+                        <input type="number" step="1" class="form-control" id="field13" name="field13" placeholder="Enter 0, 1, 2, or 3" required>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Predict</button>
+            </form>
+            <h2>{{ output_text }}</h2>
+            {% if output_text == "This person has Heart Disease" %}
+            <p>Seek medical support at the earliest.</p>
+        {% endif %}
+        </div>
+    </div>
+</body>
+</html>

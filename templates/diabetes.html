@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diabetes Prediction - Wellness Voyage</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: url('https://img.freepik.com/free-photo/3d-render-medical-background-with-flu-virus-cells_1048-15099.jpg?w=1800&t=st=1719227248~exp=1719227848~hmac=4f8af76cb3d2b1de5a936a63ce628f3daca58e9d9c7cc69283a587a7b1806710') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+            padding: 50px;
+        }
+        .card {
+            background-color: rgba(0, 0, 0, 0.8);
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            color: white;
+            padding: 30px;
+            margin: 30px;
+            max-width: 900px;
+            width: 100%;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+        h1 {
+            color: #ffcc00;
+        }
+        .btn-primary {
+            background-color: #ffcc00;
+            border: none;
+            color: black;
+        }
+        .btn-primary:hover {
+            background-color: #e6b800;
+        }
+        .form-control {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid #ffcc00;
+        }
+        .form-label {
+            color: white;
+        }
+        .form-control::placeholder {
+            color: #ccc; /* Change this color to your desired placeholder color */
+        }
+        .info-icon {
+            color: #ffcc00;
+            margin-left: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h1 class="text-center">Diabetes Prediction</h1>
+            <form action="{{ url_for('predictdiabetes') }}" method="post">
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="field1" class="form-label">Pregnancies</label>
+                        <input type="number" step="any" class="form-control" id="field1" name="field1" placeholder="Enter number of pregnancies" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="field2" class="form-label">Glucose</label>
+                        <input type="number" step="any" class="form-control" id="field2" name="field2" placeholder= "generally between 0-199 according to the dataset" required>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="field3" class="form-label">Blood Pressure</label>
+                        <input type="number" step="any" class="form-control" id="field3" name="field3" placeholder="generally between 0-122 according to the dataset"required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="field4" class="form-label">Skin Thickness
+                            <span class="info-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Skin thickness is a measure of the thickness of the skin, which can help indicate levels of subcutaneous fat.">&#9432;</span>
+                        </label>
+
+                    
+                        <input type="number" step="any" class="form-control" id="field4" name="field4"  placeholder="generally between 0-99 according to the dataset" required>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="field5" class="form-label">Insulin</label>
+                        <input type="number" step="any" class="form-control" id="field5" name="field5" placeholder="generally between 0-846 according to the dataset" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="field6" class="form-label">BMI</label>
+                        <input type="number" step="any" class="form-control" id="field6" name="field6"  placeholder="generally between 0-67 according to the dataset" required>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="field7" class="form-label">Diabetes Pedigree Function
+                            <span class="info-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="The Diabetes Pedigree Function provides information about diabetes mellitus history in relatives and the genetic relationship of those relatives to the patient.">&#9432;</span>
+                        </label>
+                        <input type="number" step="any" class="form-control" id="field7" name="field7"  placeholder="generally between 0.078-2.420 according to the dataset"required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="field8" class="form-label">Age</label>
+                        <input type="number" step="any" class="form-control" id="field8" name="field8" placeholder="Enter age" required>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Predict</button>
+            </form>
+            <h2>{{output_text}}</h2>
+            {% if output_text == "This person has Diabetes" %}
+            <p>Seek medical support at the earliest.</p>
+        {% endif %}
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disease Prediction</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            font-family: Arial, sans-serif;
+            background: url('https://img.freepik.com/free-photo/3d-render-medical-background-with-flu-virus-cells_1048-15099.jpg?w=1800&t=st=1719227248~exp=1719227848~hmac=4f8af76cb3d2b1de5a936a63ce628f3daca58e9d9c7cc69283a587a7b1806710') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 10px 20px;
+        }
+        .navbar .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+        .navbar ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        .navbar ul li {
+            margin: 0;
+        }
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 14px 20px;
+            display: block;
+        }
+        .navbar ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        .content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80vh;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.5);
+            margin: 20px;
+            border-radius: 10px;
+            padding: 20px;
+        }
+        .content h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        .content p {
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">Wellness Voyage</div>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About Us</a></li>
+            <li><a href="/predictionsympt">Disease Prediction on Symptoms</a></li>
+            <li><a href="/predict_test">Disease Prediction on Test Results</a></li>
+            <!-- <li><a href="/feedback">Feedback</a></li> -->
+            <li><a href="/consultation">Consultation-Booking</a></li>
+            <li><a href="/contact">Contact Us</a></li>
+        </ul>
+    </nav>
+    <div class="content">
+        <div>
+            <h1>Welcome to Wellness Voyage</h1>
+            <p>Utilizing advanced algorithms to predict diseases based on your symptoms and test results.</p>
+        </div>
+    </div>
+</body>
+</html>
